@@ -1,5 +1,3 @@
-"use client";
-
 import { MarkdownRenderer } from "@/components/MarkdownRenderer";
 
 export function StreamingDisplay({
@@ -8,10 +6,7 @@ export function StreamingDisplay({
   streamingContent: string;
 }) {
   return (
-    <div
-      className="flex gap-3 px-4 py-4 bg-zinc-900/30 animate-[fadeIn_0.3s_ease-out]"
-      aria-live="polite"
-    >
+    <div className="flex gap-3 px-4 py-4 bg-zinc-900/30 animate-[fadeIn_0.3s_ease-out]">
       <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center">
         <svg
           width="16"
