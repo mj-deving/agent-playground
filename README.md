@@ -2,7 +2,7 @@
 
 Interactive chat UI for AI research agents. Connect to a managed-agent-poc backend and run basic or plan-and-reflect research workflows through a streaming real-time interface with conversation history, markdown rendering, and run metadata.
 
-![Screenshot placeholder](docs/screenshot.png)
+![Agent Playground — RAG vs Fine-Tuning Research](docs/screenshot.png)
 
 ## Tech Stack
 
