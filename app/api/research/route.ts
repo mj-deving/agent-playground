@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
 
         // Phase 2: Call backend
         const controller_ = new AbortController();
-        const timeout = setTimeout(() => controller_.abort(), 120_000);
+        const timeout = setTimeout(() => controller_.abort(), 300_000); // 5 min — agents need 60-180s
 
         const backendResponse = await fetch(`${BACKEND_URL}/research`, {
           method: "POST",
@@ -127,7 +127,7 @@ export async function POST(request: NextRequest) {
       } catch (err) {
         const message =
           err instanceof DOMException && err.name === "AbortError"
-            ? "Request timed out (120s)"
+            ? "Request timed out (300s) — research agents can take 1-3 minutes"
             : err instanceof Error
               ? err.message
               : "Unknown backend error";
