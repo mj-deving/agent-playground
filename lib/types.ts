@@ -51,5 +51,6 @@ export type ChatAction =
   | { type: "SET_STATUS"; message: string }
   | { type: "APPEND_CHUNK"; chunk: string }
   | { type: "FINISH_STREAMING"; metadata?: MessageMetadata }
+  | { type: "FINISH_STREAMING_IF_NEEDED"; metadata?: MessageMetadata }
   | { type: "SET_ERROR"; error: string }
   | { type: "LOAD_CONVERSATIONS"; conversations: Conversation[] };

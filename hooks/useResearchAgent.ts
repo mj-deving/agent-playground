@@ -138,6 +138,14 @@ function chatReducer(state: ChatState, action: ChatAction): ChatState {
       };
     }
 
+    case "FINISH_STREAMING_IF_NEEDED":
+      // Only finish if still streaming (metadata event may have already handled it)
+      if (!state.isStreaming) return state;
+      return chatReducer(state, {
+        type: "FINISH_STREAMING",
+        metadata: action.metadata,
+      });
+
     case "SET_ERROR":
       return {
         ...state,
@@ -183,9 +191,12 @@ export function useResearchAgent() {
 
   const sendResearch = useCallback(
     async (topic: string, mode: AgentMode) => {
-      // Ensure we have an active conversation
+      // Ensure we have an active conversation — dispatch and let reducer
+      // handle both creation + message in a predictable sequence
       if (!state.activeConversationId) {
         dispatch({ type: "NEW_CONVERSATION", mode });
+        // NEW_CONVERSATION sets activeConversationId synchronously in the
+        // reducer, so the next dispatch picks it up within the same batch
       }
 
       dispatch({ type: "ADD_USER_MESSAGE", content: topic });
@@ -284,14 +295,12 @@ export function useResearchAgent() {
           }
         }
 
-        // If stream ended without metadata event, finish now
-        if (state.isStreaming) {
-          const elapsed = (Date.now() - startTime) / 1000;
-          dispatch({
-            type: "FINISH_STREAMING",
-            metadata: { words: 0, elapsed, mode },
-          });
-        }
+        // If stream ended without metadata event, finish with fallback
+        const elapsed = (Date.now() - startTime) / 1000;
+        dispatch({
+          type: "FINISH_STREAMING_IF_NEEDED",
+          metadata: { words: 0, elapsed, mode },
+        });
       } catch (err) {
         if (err instanceof DOMException && err.name === "AbortError") {
           dispatch({ type: "SET_ERROR", error: "Research cancelled" });
