@@ -1,12 +1,5 @@
 # Agent Playground
 
-[![Next.js](https://img.shields.io/badge/Next.js-14-black.svg)](#tech-stack)
-[![TypeScript](https://img.shields.io/badge/TypeScript-strict-blue.svg)](#tech-stack)
-[![Tailwind](https://img.shields.io/badge/Tailwind_CSS-v4-38bdf8.svg)](#tech-stack)
-[![Status](https://img.shields.io/badge/status-live-brightgreen.svg)](#features)
-[![SSE](https://img.shields.io/badge/streaming-SSE-blue.svg)](#architecture)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-
 ![Next.js](https://img.shields.io/badge/-Next.js-000000?style=flat-square) ![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square) ![SSE](https://img.shields.io/badge/-SSE-4CAF50?style=flat-square)
 
 **Interactive chat UI for AI research agents.** Connect to a managed-agent-poc backend and run basic or plan-and-reflect research workflows through a streaming real-time interface. Full conversation history, markdown rendering, run metadata, and dual agent modes — all in a responsive dark-theme interface.
